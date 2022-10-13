@@ -1,0 +1,29 @@
+Description: replace ava by tape
+Author: Xavier Guimard <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2020-12-25
+
+--- a/test.js
++++ b/test.js
+@@ -1,5 +1,5 @@
+-import test from 'ava';
+-import cliSpinners from '.';
++const test = require('tape');
++const cliSpinners = require('.');
+ 
+ function mockMathRandom(fixedResult) {
+ 	unMockMathRandom();
+@@ -20,6 +20,7 @@
+ 	t.is(typeof cliSpinners, 'object');
+ 	t.is(cliSpinners.dots.interval, 80);
+ 	t.true(Array.isArray(cliSpinners.dots.frames));
++	t.end();
+ });
+ 
+ test('random getter', t => {
+@@ -40,4 +41,5 @@
+ 	t.is(cliSpinners.random, spinnersList[spinnersList.length - 1]);
+ 
+ 	unMockMathRandom();
++	t.end();
+ });
